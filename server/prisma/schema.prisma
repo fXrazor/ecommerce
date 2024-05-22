@@ -20,3 +20,11 @@ model User {
   updatedAt  DateTime  @updatedAt
   username   String    @unique
 }
+
+model EcommerceAdmin {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  password  String?
+  updatedAt DateTime @updatedAt
+  username  String?
+}
