@@ -11,13 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { BigIntNullableFilter } from "../../util/BigIntNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 
 @InputType()
 class UserWhereInput {
+  @ApiProperty({
+    required: false,
+    type: BigIntNullableFilter,
+  })
+  @Type(() => BigIntNullableFilter)
+  @IsOptional()
+  @Field(() => BigIntNullableFilter, {
+    nullable: true,
+  })
+  customerId?: BigIntNullableFilter;
+
   @ApiProperty({
     required: false,
     type: StringNullableFilter,
@@ -50,6 +63,17 @@ class UserWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeNullableFilter,
+  })
+  @Type(() => DateTimeNullableFilter)
+  @IsOptional()
+  @Field(() => DateTimeNullableFilter, {
+    nullable: true,
+  })
+  lastLogin?: DateTimeNullableFilter;
 
   @ApiProperty({
     required: false,
